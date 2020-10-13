@@ -1,14 +1,20 @@
 # Vue + Node + Mongodb 开发一个完整博客流程
 
 ## 本地开发:
+server端: localhost:3000
+
 后台管理: localhost:8090
 
 web端: localhost:8080
 
-server端: localhost:3000
-
 
 ## 脚本命令
+mongod // 启动 mongod
+
+npm run start // 启动 adminMongo 可视化程序界面
+
+npm run server  // 启动服务
+
 npm run dev:admin // 本地开发后台管理
 
 npm run dev:client // 本地开发前台页面
@@ -19,30 +25,54 @@ npm run build:client // 项目打包 - 前台
 
 npm run analyz  // 查看打包信息
 
-npm run server  // 启动服务
 
 
 ## 注意事项： 
-  1. `cnpm run server` 启动服务器
-  2. 启动时，记得启动mongodb数据库，账号密码  可以在 server/config.js  文件下进行配置 
-  3. `db.createUser({user:"cd",pwd:"123456",roles:[{role:"readWrite",db:'test'}]})` (mongodb 注册用户)
-  4. `cnpm run dev:admin` 启动后台管理界面
-  5. 登录后台管理界面录制数据
-  6. 登录后台管理时需要在数据库 创建 users 集合注册一个账号进行登录
-  ```
-  db.users.insert({
-      "name" : "cd",
-      "pwd" : "e10adc3949ba59abbe56e057f20f883e",
+  1. mongodb 注册用户
+    ```
+    db.createUser({
+      user: "admin",
+      pwd: "123456",
+      roles: [{
+        db: "blog",
+        role: "readWrite"
+      }]
+    })
+    ```
+  2. server/config.js 文件内配置连接数据库的账号密码
+    ```
+    mongodb: {
+      username: 'admin',
+      pwd: 123456,
+      db: 'blog',
+      address: 'localhost:27017'
+    }
+    ```
+  3. blog 数据库先创建一个 users 集合并初始化一个账号，用于登录博客管理后台
+    ```
+    db.users.insert({
       "username" : "admin",
-      "roles" : [ 
-          "admin"
+      "pwd" : e10adc3949ba59abbe56e057f20f883e, // 这里是 md5('123456') 后的数据
+      "name" : "admin",
+      "roles" : [
+        "admin"
       ]
-  })
+    })
+    // 账号：admin  密码：123456
+    // 登录后可立即修改数据
+    ```
+  4. `cnpm run server` 启动服务器
+  5. `cnpm run dev:admin` 启动后台管理界面
+  6. `cnpm run dev:client` 启动前台页面
+  7. 后台管理界面录入数据
 
-  // 账号： admin  密码： 123456
-  ```
-  7. `cnpm run dev:client` 启动前台页面
 
+## mongodb 安装问题
+
+1. mac端sudo open -e〜/ .bash_profile权限被拒绝：
+   解决：`sudo chown username ~/.bash_profile`
+2. mac端mongodb启动报错：Data directory /data/db not found., terminating
+   解决：更改指定运行路径，`mongod --dbpath '新的可访问路径'`
 
 
 **参考文章**
