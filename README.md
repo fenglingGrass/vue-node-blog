@@ -48,7 +48,7 @@ npm run analyz  // 查看打包信息
       address: 'localhost:27017'
     }
     
-  3. blog 数据库先创建一个 users 集合并初始化一个账号，用于登录博客管理后台
+  3. blog 数据库先创建一个 users 集合并初始化一个账号，用于登录博客管理后台，登录后可在后台管理界面修改密码
   
     db.users.insert({
       "username" : "admin",
@@ -59,7 +59,6 @@ npm run analyz  // 查看打包信息
       ]
     })
     // 账号：admin  密码：123456
-    // 登录后可立即修改数据
     
   4. `cnpm run server` 启动服务器
   5. `cnpm run dev:admin` 启动后台管理界面
@@ -69,17 +68,17 @@ npm run analyz  // 查看打包信息
 
 ## mongodb 安装问题
 
-1. mac端sudo open -e〜/ .bash_profile权限被拒绝：
+1. mac端 `sudo open -e 〜/.bash_profile` 权限被拒绝：
 
    解决：`sudo chown username ~/.bash_profile`
    
-2. mac端mongodb启动报错：Data directory /data/db not found., terminating
+2. mac端 `mongodb` 启动报错：`Data directory /data/db not found`
 
    解决：更改指定运行路径，`mongod --dbpath '新的可访问存储路径'`
    
-3. 新开终端mongod命令失效
+3. mac端：新开终端 `mongod` 命令失效
 
-   原因：电脑端使用 iterm2 作为终端工具，未加载 `~/.bash_profile` 文件中的环境变量，详解：https://blog.csdn.net/Bronze5/article/details/103440877
+   原因：电脑端使用 `iterm2` 作为终端工具，未加载 `~/.bash_profile` 文件中的环境变量，详解：https://blog.csdn.net/Bronze5/article/details/103440877
    
    解决：
    
