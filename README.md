@@ -72,9 +72,13 @@ npm run analyz  // 查看打包信息
 
    解决：`sudo chown username ~/.bash_profile`
    
-2. mac端 `mongodb` 启动报错：`Data directory /data/db not found`
+2. mac端 `mongod` 启动报错：`Data directory /data/db not found`
 
    解决：更改指定运行路径，`mongod --dbpath '新的可访问存储路径'`
+   
+3. mac端 `mongod` 启动报错：`Is a mongod instance already running?`
+
+   解决：删除这句报错前提供路径下的 `mongod.lock` 文件，`sudo rm /xxx/xxx/data/db/mongod.lock`
    
 3. mac端：新开终端 `mongod` 命令失效
 
