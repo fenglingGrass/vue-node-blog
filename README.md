@@ -78,7 +78,9 @@ npm run analyz  // 查看打包信息
    
 3. mac端：新开终端 `mongod` 命令失效
 
-   原因：电脑端使用 `iterm2` 作为终端工具，未加载 `~/.bash_profile` 文件中的环境变量，详解：https://blog.csdn.net/Bronze5/article/details/103440877
+   原因：电脑端使用 `iterm2` 作为终端工具，未加载 `~/.bash_profile` 文件中的环境变量
+   
+   详解：https://blog.csdn.net/Bronze5/article/details/103440877
    
    解决：
    
